@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Pet Information {% endblock %}
+
+{% block content %}
+
+<h2>{{pet_data['animal']['name']}}'s Profile </h2>
+
+{% if session['username'] %}
+<form method="POST" action="/dogs/{{pet_data['animal']['id']}}/like" id="messages-form">
+    <button class="btn btn-sm {{'btn-primary'}}">
+      Add this pet to your list!
+    </button>
+</form>
+
+<form method="POST" action="/dogs/{{pet_data['animal']['id']}}/dislike" id="messages-form">
+    <button class="btn btn-sm {{'btn-primary'}}">
+      Remove this pet from your list!
+    </button>
+</form>
+{% endif %}
+<h4>Photos: </h4>
+{% for photo in pet_data['animal']['photos'] %}
+    <img src ='{{photo['full']}}' height='400px'>
+{% endfor %}
+
+
+
+<div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{pet_data['animal']['name']}}'s Info</h5>
+        <li class="list-group-item">Breed: <br>
+            {% if pet_data['animal']['breeds']['unknown'] == True %}
+                No information in the breed.
+            {% endif %}
+            Mixed: {{pet_data['animal']['breeds']['mixed']}} <br>
+            Primary: {{pet_data['animal']['breeds']['primary']}} <br>
+            Secondary: {{pet_data['animal']['breeds']['secondary']}}
+        </li>
+        <li class="list-group-item">Age: {{pet_data['animal']['age']}}</li>
+        <li class="list-group-item">Gender: {{pet_data['animal']['gender']}}</li>
+        <li class="list-group-item">Size: {{pet_data['animal']['size']}}</li>
+        <li class="list-group-item">Coat: {{pet_data['animal']['coat']}}</li>      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">  Attributes: <br></h5>
+        <li class="list-group-item">
+            {% if pet_data['animal']['attributes']['spayed_neutered'] == True %}
+                Spayed Neutered<br>
+            {% endif %}
+            {% if pet_data['animal']['attributes']['house_trained'] == True %}
+                House Trained<br>
+            {% endif %}
+            {% if pet_data['animal']['attributes']['declawed'] == True %}
+                Declawed<br>
+            {% endif %}
+            {% if pet_data['animal']['attributes']['special_needs'] == True %}
+                Special Needs<br>
+            {% endif %} 
+            {% if pet_data['animal']['attributes']['shots_current'] == True %}
+                Shots Current
+            {% endif %}
+        </li>
+        
+        {% if  pet_data['animal']['environment']['children'] == True %}
+            <li class="list-group-item">Good In Home With Children</li>
+        {% endif %}
+        {% if  pet_data['animal']['environment']['dogs'] == True %}
+            <li class="list-group-item">Good In Home With Dogs</li>
+        {% endif %}
+        {% if  pet_data['animal']['environment']['cats'] == True %}
+            <li class="list-group-item">Good In Home With Cats</li>
+        {% endif %}
+        
+        <li class="list-group-item">Status: {{pet_data['animal']['status']}}</li>      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Contact Information</h5>
+        {% if session['username'] %}
+  <div class="card" style="width: 18rem;width: 50%;margin: 0 auto;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Email: {{pet_data['animal']['contact']['email']}} </li>
+      <li class="list-group-item">Phone: {{pet_data['animal']['contact']['phone']}} </li>
+      <li class="list-group-item">Address: 
+          {% if pet_data['animal']['contact']['address']['address1'] != None %}
+                {{pet_data['animal']['contact']['address']['address1']}}
+          {% endif %}
+          {% if pet_data['animal']['contact']['address']['address2'] != None %}
+                {{pet_data['animal']['contact']['address']['address2']}}
+          {% endif %}
+          {% if pet_data['animal']['contact']['address']['city'] != None %}
+                {{pet_data['animal']['contact']['address']['city']}}
+          {% endif %}
+          {% if pet_data['animal']['contact']['address']['state'] != None %}
+                {{pet_data['animal']['contact']['address']['state']}}
+          {% endif %}
+      </li>
+    </ul>
+  </div>
+{% else %}
+<li class="list-group-item">
+  You need to log in first to see the contact information.
+</li>
+  {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}UserProfile{% endblock %}
+
+{% block content %}
+<h1> {{user.username}}'s User Profile</h1>
+<form style= 'display:inline' action='/user/{{user.username}}/delete' method='POST'>
+    <button class='btn  btn-sm btn-danger'> Remove User</button>
+    </form>
+    <ul class="list-group" >
+      <li class="list-group-item">Username: <br>
+        {{user.username}}
+      </li>
+      <li class="list-group-item">Email: <br>
+        {{user.email}}
+      </li>
+      <li class="list-group-item">First Name: <br>
+        {{user.first_name}}
+      </li>
+      <li class="list-group-item">Last Name: <br>
+        {{user.last_name}}
+      </li>
+    </ul>
+
+
+{% for i in range(length) %}
+    <div class="card mb-3" style="max-width: auto;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src={{likelist[i]['animal']['photos'][0]['full']}} class="img-thumbnail" alt="..."  width = '300px ' height='300px'>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="/dogs/{{likelist[i]['animal']['id']}}" >{{likelist[i]['animal']['name']}}</a>
+              </h5>
+                <li class="list-group-item">Gender:{{likelist[i]['animal']['gender']}}</li>
+                <li class="list-group-item">Age:{{likelist[i]['animal']['age']}}</li>
+                <li class="list-group-item">Size:{{likelist[i]['animal']['size']}}</li>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+{% endblock %}

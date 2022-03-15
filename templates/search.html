@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Search Result{% endblock %}
+
+{% block content %}
+<h1 class = 'display-1'>Search Result</h1>
+    
+    {% if pet_data['pagination']['_links']['previous'] %}
+    <form id='login' action="/{{type}}s/page/{{prev_page}}" method = 'POST'>
+      {{ form.hidden_tag() }}
+
+        {% for field in form 
+        if field.widget.input_type != 'hidden' %}
+        <p>
+            {{field.label}}
+            {{field(class_='form-control')}}
+
+            {% for error in field.errors %}
+            <span class='form-text text-danger'>{{error}}</span>
+            {% endfor %}
+        </p>
+        {% endfor %}
+        <button class = 'btn btn-success' type='submit'>Previous Page</button>
+    </form>
+    {% endif %}
+
+    {% for pet in pet_data['animals'] %}
+               <div class="card mb-3" style="max-width: auto; ">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    {% if pet['photos'][0] %}
+                    <img src="{{pet['photos'][0]['full']}}" class="img-thumbnail" alt="No Picture Available" width = '300px ' height='450px'>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/dogs/{{pet['id']}}" >{{pet['name']}}</a></h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Age: {{pet['age']}}</li>
+                        <li class="list-group-item">Gender: {{pet['gender']}}</li>
+                        <li class="list-group-item">Size: {{pet['size']}}</li>
+                        <li class="list-group-item">Status: {{pet['status']}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    {% endfor %}
+
+    {% if pet_data['pagination']['_links']['next'] %}
+      <form id='login' action="/{{type}}s/page/{{next_page}}" method = 'POST'>
+        {{ form.hidden_tag() }}
+      
+          {% for field in form 
+          if field.widget.input_type != 'hidden' %}
+          <p>
+              {{field.label}}
+              {{field(class_='form-control')}}
+    
+              {% for error in field.errors %}
+              <span class='form-text text-danger'>{{error}}</span>
+              {% endfor %}
+          </p>
+          {% endfor %}
+          <button class = 'btn btn-success' type='submit'>Next Page</button>
+      </form>
+    {% endif %}
+
+
+
+
+{% endblock %}

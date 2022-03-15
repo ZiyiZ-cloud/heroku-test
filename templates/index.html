@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}YourPet{% endblock %}
+
+{% block content %}
+<h1>YourPet</h1>
+<p>This is the homepage for YourPet!</p>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Search for dogs</h5>
+        <p class="card-text">    
+          <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" class="card-img-top" alt="..." height=400px>
+        </p>
+        <a href="/dogs" class="btn btn-primary">Dogs</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Search for cats</h5>
+        <p class="card-text">
+          <img src="https://images.pexels.com/photos/1543793/pexels-photo-1543793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="..." height=400px>
+
+        </p>
+        <a href="/cats" class="btn btn-primary">Cats</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
