@@ -11,7 +11,7 @@ from forms import RegisterForm, LoginForm, DogSearchForm, CatSearchForm
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql:///yourpet'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres://qvgbxqsjjvhwru:0b866b6ba07a83f97557659fd73f709af310c23baa0065e50102e17a69f737e6@ec2-44-194-167-63.compute-1.amazonaws.com:5432/denlfcrijfba6e')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgresql://qvgbxqsjjvhwru:0b866b6ba07a83f97557659fd73f709af310c23baa0065e50102e17a69f737e6@ec2-44-194-167-63.compute-1.amazonaws.com:5432/denlfcrijfba6e')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = True
 app.config["SECRET_KEY"] = 'abc123'
