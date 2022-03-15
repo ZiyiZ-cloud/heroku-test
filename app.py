@@ -4,7 +4,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 import requests, json
 import os
 
-from secret import API_KEY, API_SECRET
+# from secret import API_KEY, API_SECRET
 from model import connect_db, db, User, Likes
 from forms import RegisterForm, LoginForm, DogSearchForm, CatSearchForm
 
