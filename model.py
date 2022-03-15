@@ -77,5 +77,10 @@ class Likes(db.Model):
     )
 
     pet_id = db.Column(
-        db.String
+        db.Integer
     )
+    
+    __table_args__ = (UniqueConstraint('user_username', 'pet_id', name='_username_petid_uc'),
+                     )
+    
+    
