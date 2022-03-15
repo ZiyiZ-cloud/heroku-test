@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
 
+
 bcrypt = Bcrypt()
 
 
@@ -80,7 +81,7 @@ class Likes(db.Model):
         db.Integer
     )
     
-    __table_args__ = (UniqueConstraint('user_username', 'pet_id', name='_username_petid_uc'),
+    __table_args__ = (db.UniqueConstraint('user_username', 'pet_id', name='_username_petid_uc'),
                      )
     
     
