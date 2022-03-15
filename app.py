@@ -18,7 +18,7 @@ if uri.startswith("postgres://"):
 # rest of connection code using the connection string `uri`
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-    'DATABASE_URL', uri)
+    uri)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = True
 app.config["SECRET_KEY"] = 'abc123'
