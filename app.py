@@ -351,7 +351,7 @@ def doglike(dog_id):
         flash('You have already added this pet to your list.','danger')
         return redirect(f"/dogs/{dog_id}")
 
-@app.route('/dogs/<int:dog_id>/dislike',methods=['POST'])
+@app.route('/dogs/<string:dog_id>/dislike',methods=['POST'])
 def dogdislike(dog_id):
     # if not logged in cannot dislike the dog
     # also have a part in html that will not show button if not logged in
